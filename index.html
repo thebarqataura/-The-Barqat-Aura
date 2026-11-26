@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover timeless imitation jewellery at BARQAT Aura.">
+  <title>BARQAT Aura | Jewellery, with meaning</title>
+  <style>
+    :root{
+      --cream:#f7f2eb;--paper:#fffdf9;--ink:#30271f;--muted:#82766a;
+      --brown:#72543f;--line:#e8ded2;--gold:#b08a55;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+    button,input,textarea{font:inherit}
+    button{cursor:pointer}
+    .topline{background:var(--ink);color:#fff;text-align:center;padding:9px 12px;font:11px Arial,sans-serif;letter-spacing:2px}
+    header{position:sticky;top:0;z-index:5;background:#fffdf9ed;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .nav{max-width:1180px;margin:auto;padding:17px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-size:25px;letter-spacing:5px;text-decoration:none;color:var(--ink);white-space:nowrap}
+    .brand small{display:block;text-align:center;font:9px Arial,sans-serif;letter-spacing:4px;color:var(--gold);margin-top:4px}
+    .navlinks{display:flex;gap:25px;align-items:center}
+    .navlinks a{color:var(--ink);text-decoration:none;font:12px Arial,sans-serif;letter-spacing:1px}
+    .cartbtn{border:1px solid var(--brown);background:transparent;color:var(--brown);padding:10px 14px;font:12px Arial,sans-serif;letter-spacing:1px}
+    .hero{background:var(--cream);display:grid;grid-template-columns:1.05fr .95fr;min-height:490px}
+    .hero-copy{padding:80px max(30px,calc((100vw - 1180px)/2));padding-right:35px;display:flex;flex-direction:column;justify-content:center}
+    .eyebrow{font:10px Arial,sans-serif;letter-spacing:3px;color:var(--gold);text-transform:uppercase}
+    h1{font-size:clamp(42px,5.2vw,68px);line-height:1.05;font-weight:normal;margin:20px 0}
+    .hero-copy p{font:14px/1.9 Arial,sans-serif;color:var(--muted);max-width:430px}
+    .primary{display:inline-block;background:var(--brown);color:white;border:0;padding:15px 23px;margin-top:22px;text-decoration:none;font:11px Arial,sans-serif;letter-spacing:2px;width:max-content}
+    .hero-image{min-height:390px;background:linear-gradient(135deg,#cbb9a5,#8e7560);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .hero-image img{width:100%;height:100%;object-fit:cover;min-height:490px;opacity:.9}
+    section{max-width:1180px;margin:auto;padding:70px 22px}
+    .section-head{text-align:center;margin-bottom:35px}
+    .section-head h2{font-size:34px;font-weight:normal;margin:12px 0}
+    .section-head p{font:13px Arial,sans-serif;color:var(--muted)}
+    .products{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+    .product img{width:100%;aspect-ratio:4/5;object-fit:cover;background:var(--cream);display:block}
+    .product h3{font-size:17px;font-weight:normal;margin:14px 0 7px}
+    .price{font:13px Arial,sans-serif;color:var(--brown)}
+    .add{width:100%;margin-top:12px;border:1px solid var(--brown);background:transparent;color:var(--brown);padding:12px;font:10px Arial,sans-serif;letter-spacing:1.5px}
+    .add:hover{background:var(--brown);color:white}
+    .story{background:var(--cream);text-align:center;padding:58px 22px}
+    .story p{max-width:620px;margin:15px auto 0;color:var(--muted);font:14px/1.9 Arial,sans-serif}
+    footer{background:var(--ink);color:#f7f2eb;text-align:center;padding:38px 20px}
+    footer .brand{color:#f7f2eb}footer p{font:11px Arial,sans-serif;color:#c9bdb0;line-height:1.8}
+    .overlay{position:fixed;inset:0;background:#0007;z-index:10;display:none}
+    .overlay.show{display:block}
+    .drawer{position:absolute;right:0;top:0;height:100%;width:min(440px,100%);background:var(--paper);padding:25px;overflow:auto}
+    .drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:15px}
+    .drawer h2{font-weight:normal}
+    .close{border:0;background:none;font:24px Arial;color:var(--ink)}
+    .cart-row{display:grid;grid-template-columns:75px 1fr auto;gap:13px;padding:17px 0;border-bottom:1px solid var(--line);align-items:center}
+    .cart-row img{width:75px;height:85px;object-fit:cover;background:var(--cream)}
+    .cart-row h4{font-weight:normal;margin:0 0 7px}
+    .cart-row small{font:12px Arial;color:var(--muted)}
+    .qty{display:flex;align-items:center;gap:10px;margin-top:9px;font:13px Arial}
+    .qty button{border:1px solid var(--line);background:white;width:25px;height:25px}
+    .remove{border:0;background:none;color:#987c68;font:11px Arial;text-decoration:underline;margin-top:7px}
+    .total{display:flex;justify-content:space-between;padding:20px 0;font:15px Arial}
+    .checkout{width:100%;background:var(--brown);color:white;border:0;padding:15px;font:11px Arial;letter-spacing:2px}
+    .note{font:11px/1.6 Arial;color:var(--muted);margin-top:12px}
+    .checkout-form{display:none;margin-top:20px;border-top:1px solid var(--line);padding-top:18px}
+    .checkout-form.show{display:block}
+    .checkout-form label{display:block;font:11px Arial;color:var(--muted);margin:12px 0 6px}
+    .checkout-form input,.checkout-form textarea{width:100%;padding:12px;border:1px solid var(--line);background:white;color:var(--ink);font:13px Arial}
+    .checkout-form textarea{min-height:75px;resize:vertical}
+    .empty{text-align:center;padding:45px 10px;color:var(--muted);font:13px Arial}
+    @media(max-width:760px){
+      .nav{padding:14px}.navlinks{display:none}.hero{grid-template-columns:1fr}
+      .hero-copy{padding:55px 25px}.hero-image{min-height:280px}.hero-image img{min-height:280px}
+      section{padding:52px 16px}.products{grid-template-columns:repeat(2,1fr);gap:22px 13px}
+      .section-head h2{font-size:29px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">A LITTLE BEAUTY, A LOT OF BARKAT</div>
+  <header>
+    <nav class="nav">
+      <a class="brand" href="#">BARQAT AURA<small>TIMELESS • ELEGANT • YOU</small></a>
+      <div class="navlinks"><a href="#shop">SHOP</a><a href="#story">OUR STORY</a><a href="#contact">CONTACT</a></div>
+      <button class="cartbtn" onclick="openCart()">BAG (<span id="cart-count">0</span>)</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">The art of adornment</span>
+        <h1>Jewellery that feels like <i>you.</i></h1>
+        <p>Thoughtfully chosen pieces to make everyday moments feel a little more special. Discover the BARQAT Aura collection.</p>
+        <a class="primary" href="#shop">EXPLORE THE COLLECTION</a>
+      </div>
+      <div class="hero-image">
+        <!-- Replace this image URL with your own BARQAT Aura campaign photograph. -->
+        <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1200&q=85" alt="Elegant jewellery display">
+      </div>
+    </div>
+
+    <section id="shop">
+      <div class="section-head">
+        <span class="eyebrow">Curated for you</span>
+        <h2>The Collection</h2>
+        <p>Find the piece that speaks your style.</p>
+      </div>
+      <div class="products" id="products"></div>
+    </section>
+
+    <div class="story" id="story">
+      <span class="eyebrow">A little about us</span>
+      <h2 style="font-weight:normal;font-size:32px;margin:12px 0">The story of BARQAT Aura</h2>
+      <p>BARQAT Aura celebrates the beauty of thoughtful details, timeless design and the confidence that comes from wearing something you love. Thank you for being part of our story.</p>
+    </div>
+  </main>
+
+  <footer id="contact">
+    <div class="brand">BARQAT AURA</div>
+    <p>For product and order enquiries: hello@barqataura.example<br>Instagram: @your-instagram-handle<br><br>© <span id="year"></span> BARQAT Aura. All rights reserved.</p>
+  </footer>
+
+  <div class="overlay" id="cart-overlay" onclick="overlayClose(event)">
+    <aside class="drawer">
+      <div class="drawer-head"><h2>Your Shopping Bag</h2><button class="close" onclick="closeCart()">×</button></div>
+      <div id="cart-items"></div>
+      <div id="cart-bottom" style="display:none">
+        <div class="total"><span>Subtotal</span><strong id="subtotal">₹0</strong></div>
+        <button class="checkout" onclick="showCheckout()">PROCEED TO CHECKOUT</button>
+        <p class="note">Prepaid orders only. Shipping charges, if applicable, will be shown before payment.</p>
+        <form class="checkout-form" id="checkout-form" onsubmit="demoPayment(event)">
+          <h3 style="font-weight:normal">Delivery details</h3>
+          <label for="customer-name">Full name</label><input id="customer-name" required autocomplete="name">
+          <label for="customer-phone">Phone number</label><input id="customer-phone" type="tel" required autocomplete="tel">
+          <label for="customer-email">Email</label><input id="customer-email" type="email" required autocomplete="email">
+          <label for="customer-address">Full delivery address</label><textarea id="customer-address" required autocomplete="street-address"></textarea>
+          <label for="customer-pin">PIN code</label><input id="customer-pin" inputmode="numeric" pattern="[0-9]{6}" required>
+          <button class="checkout" type="submit" style="margin-top:16px">CONTINUE TO SECURE PAYMENT</button>
+          <p class="note">Demo preview only: payment is not connected yet. Do not enter real customer details on this demo site.</p>
+        </form>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    // EDIT THIS LIST: replace names, prices and image links with your real products.
+    const products = [
+      {id:1,name:"The Noor Earrings",price:499,category:"Earrings",image:"https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=700&q=80"},
+      {id:2,name:"The Aaira Necklace",price:899,category:"Necklaces",image:"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=700&q=80"},
+      {id:3,name:"The Mehr Kada",price:599,category:"Bracelets",image:"https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=80"},
+      {id:4,name:"The Ziya Hoops",price:399,category:"Earrings",image:"https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=700&q=80"}
+    ];
+    let cart = [];
+    const money = n => "₹" + n.toLocaleString("en-IN");
+
+    function renderProducts(){
+      document.getElementById("products").innerHTML = products.map(p => `
+        <article class="product">
+          <img src="${p.image}" alt="${p.name}" loading="lazy">
+          <h3>${p.name}</h3><div class="price">${money(p.price)}</div>
+          <button class="add" onclick="addToCart(${p.id})">ADD TO BAG</button>
+        </article>`).join("");
+    }
+    function addToCart(id){
+      const item=cart.find(x=>x.id===id);
+      if(item)item.qty++;else cart.push({...products.find(p=>p.id===id),qty:1});
+      renderCart();openCart();
+    }
+    function changeQty(id,delta){
+      const item=cart.find(x=>x.id===id);if(!item)return;
+      item.qty+=delta;if(item.qty<=0)cart=cart.filter(x=>x.id!==id);
+      renderCart();
+    }
+    function renderCart(){
+      const count=cart.reduce((s,x)=>s+x.qty,0);
+      const total=cart.reduce((s,x)=>s+x.price*x.qty,0);
+      document.getElementById("cart-count").textContent=count;
+      document.getElementById("subtotal").textContent=money(total);
+      document.getElementById("cart-bottom").style.display=count?"block":"none";
+      document.getElementById("cart-items").innerHTML=count?cart.map(x=>`
+        <div class="cart-row">
+          <img src="${x.image}" alt="">
+          <div><h4>${x.name}</h4><small>${money(x.price)}</small>
+            <div class="qty"><button onclick="changeQty(${x.id},-1)">−</button><span>${x.qty}</span><button onclick="changeQty(${x.id},1)">+</button></div>
+            <button class="remove" onclick="changeQty(${x.id},-${x.qty})">Remove</button>
+          </div><strong style="font:13px Arial">${money(x.price*x.qty)}</strong>
+        </div>`).join(""):`<div class="empty">Your bag is waiting for something lovely.</div>`;
+    }
+    function openCart(){document.getElementById("cart-overlay").classList.add("show")}
+    function closeCart(){document.getElementById("cart-overlay").classList.remove("show")}
+    function overlayClose(e){if(e.target.id==="cart-overlay")closeCart()}
+    function showCheckout(){
+      document.getElementById("checkout-form").classList.add("show");
+      document.getElementById("checkout-form").scrollIntoView({behavior:"smooth",block:"start"});
+    }
+    function demoPayment(e){
+      e.preventDefault();
+      alert("This is a design preview. Online payment and secure order processing have NOT been connected. Please connect a payment gateway and server before publishing or accepting orders.");
+    }
+    document.getElementById("year").textContent=new Date().getFullYear();
+    renderProducts();renderCart();
+  </script>
+</body>
+</html>
